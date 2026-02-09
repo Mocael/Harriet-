@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen, Harriet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff4d6d;
+            --dark-romance: #2b0d0d;
+            --gold-accent: #d4af37;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-romance);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* Floating Hearts Animation */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: var(--primary-pink);
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Hero Section */
+        header {
+            padding: 100px 20px;
+            z-index: 1;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+        }
+
+        /* Slideshow Styling */
+        .slideshow-container {
+            max-width: 500px;
+            position: relative;
+            margin: 50px auto;
+            border: 8px solid black;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+        }
+
+        /* Love Letter Section */
+        .letter-section {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            line-height: 1.8;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .letter-section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--primary-pink);
+        }
+         button {
+             background: white;
+             color: #ff4d6d;
+             border: none;
+             padding: 10px 20px;
+             border-radius: 20px;
+             cursor: pointer;
+             font-size: 1em;
+             margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heart-container"></div>
+
+    <header>
+        <h1>Happy Valentine's Day, Harriet Kaonga</h1>
+        <p class="subtitle">My Love • My World • My Forever</p>
+    </header>
+
+    <div class="slideshow-container">
+        <img class="mySlides" src="pic1.jpg">
+        <img class="mySlides" src="pic2.jpg">
+        <img class="mySlides" src="pic3.jpg">
+        <img class="mySlides" src="pic4.jpg">
+        <img class="mySlides" src="pic5.jpg">
+        <img class="mySlides" src="pic6.jpg">
+        <img class="mySlides" src="pic7.jpg">
+    </div>
+    <button onclick="playMusic()">Play Our Love Song 🎵</button>
+
+    <section class="letter-section">
+        <p>To my beautiful Harricael,</p>
+        <p>
+            Looking at these photos, I am reminded of how lucky I am to have you by my side. 
+            Whether you are dressed up and looking elegant or simply glowing in the sunlight, 
+            your beauty is matched only by the incredible person you are on the inside.
+        </p>
+        <p>
+            You aren't just my girlfriend; you are my best friend and my greatest inspiration. 
+            Thank you for every smile, every laugh, and for making every day feel like Valentine's Day.
+        </p>
+        <p>
+            I love you more than words can express, and I can't wait to create even more beautiful 
+            memories with you.
+        </p>
+        <p> Happy Valentine's day my love, I love you now and forever.
+        </p>
+    </section>
+
+    <footer>
+        Always & Forever Yours.
+    </footer>
+
+    <script>
+        // Slideshow Logic
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+        // Optional music
+        function playMusic() {
+        const audio = new Audio("love.mp3");
+        audio.play();
+    }
+
+        // Falling Hearts Logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.getElementById('heart-container').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
